@@ -24,3 +24,9 @@
   background-color: #d6669e;
   color: #000000;
   }
+
+  @media (max-width: 500px) {
+    .header-logo {
+      width: 6em;
+    }
+  }
