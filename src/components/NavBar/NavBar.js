@@ -5,8 +5,6 @@ import './NavBar.css'
 
 export const NavBar = () => {
 
-  const logo_path = '../../img/logo.png'
-
   return (<Navbar expand="md" id="navbar-bg">
     <Navbar.Brand href="#home" id="brand">
     <img src={logo} className='header-logo' alt="logo" />
