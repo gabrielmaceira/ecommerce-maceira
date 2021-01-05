@@ -1,0 +1,26 @@
+.text-white, #basic-nav-dropdown, #brand {
+  color: white !important;
+}
+
+#navbar-bg {
+  background-image: radial-gradient(
+    ellipse farthest-corner at 0% 400%,
+    #9e1460 0%,
+    #660339 80%,
+    #92325f 70%,
+    #801a49 70%
+  );
+}
+
+.header-logo {
+  width: 10em;
+}
+
+.dropdown-item.active {
+  background-color: #660339;
+  }
+
+.dropdown-item:hover {
+  background-color: #d6669e;
+  color: #000000;
+  }
