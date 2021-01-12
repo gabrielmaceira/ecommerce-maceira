@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
 import { NavBar } from './components/NavBar/NavBar'
 import { ItemListContainer } from './components/ItemListContainer/ItemListContainer'
 function App() {
 
-  let greeting = 'Bienvenid@ a DeliCupcakes'
+  let greeting = 'BIENVENID@S A DELICUPCAKES'
 
   return (
     <div className="App">

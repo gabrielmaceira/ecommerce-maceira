@@ -1,16 +1,29 @@
 .greetHome {
-  font-size: 6.5em;
+  font-size: 4em;
   color: white;
-  text-shadow: -1px 1px black, 1px 1px black, -1px -1px black, 1px -1px black;
-  font-family:'Freestyle Script';
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  /* text-shadow: -1px 1px black, 1px 1px black, -1px -1px black, 1px -1px black; */
+  /* font-family:'Freestyle Script'; */
+  font-family: 'Poppins', sans-serif;
+
 }
 
 .greetBack {
-  padding: 2em;
-  background: url(../../img/ameghan-rodgers-QpeoWEazLlM-unsplash.jpg);
+  padding: 3em 2em;
+  background: url(../../img/br_meghan-rodgers-QpeoWEazLlM-unsplash.jpg);
   background-repeat: no-repeat;
   background-position: center;
-  background-size:100vw;
+  background-size: cover;
+  min-height: calc(100vh - 8em);
+  overflow: hidden;
+/* hacer media query para diferentes tamaños? */
+}
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 @keyframes slidingStepUp {
@@ -39,8 +52,28 @@
   animation-fill-mode: forwards;
 }
 
-@media (max-width: 500px) {
+.slide-animate-2 {
+  animation-delay: 0.5s;
+  animation-name: slidingStepUp;
+  animation-duration: 2s;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+}
+
+.opacity-zero {
+  opacity: 0;
+}
+
+@media (max-width: 800px) {
   .greetHome {
-    font-size: 4em;
+    font-size: 2em;
+  }
+}
+
+@media (min-height: 1440px) {
+  .greetBack {
+  min-height: 1080px;
   }
 }

@@ -12,8 +12,9 @@ export const NavBar = () => {
     </Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="ml-auto mr-5">
+      <Nav className="ml-auto mr-5 center">
         <Nav.Link href="#carrito" className="text-white"><CartWidget /></Nav.Link>
+        <span className="vertical-divider ml-2 mr-2"></span>
         <Nav.Link href="#home" className="text-white">Home</Nav.Link>
         <NavDropdown title="Productos" id="basic-nav-dropdown">
           <NavDropdown.Item href="#action/3.1">Cupcakes rellenos</NavDropdown.Item>
