@@ -23,7 +23,7 @@ export const ItemList = () => {
       .catch((err) => console.log(err))
   })
 
-  return (<Row className='justify-content-between ml-xs-0 ml-md-4 mr-xs-0 mr-md-4'>
+  return (<Row className='justify-content-between ml-md-4 mr-md-4 mt-4'>
     {items !== undefined &&
       items.map(item => {
         return <Item
