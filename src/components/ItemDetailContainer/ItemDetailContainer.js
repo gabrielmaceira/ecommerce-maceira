@@ -24,7 +24,7 @@ export const ItemDetailContainer = ({ id }) => {
   }, [])
 
   return (
-    <Container fluid>
+    <Container>
       {item && <ItemDetail
         title={item.title}
         description={item.description}

@@ -17,12 +17,12 @@ export const ItemDetail = ({ title, description, photo, price }) => {
           {description}
         </Col>
       </Row>
-      <Row className='w-100'>
+      <Row className='w-100 ml-auto mr-auto'>
         <Col xs={12} className='itemDetailPrice mt-4'>
           $ {price}
         </Col>
       </Row>
-      <Row className='justify-content-center mt-auto w-100'>
+      <Row className='justify-content-center mt-auto w-100 ml-auto mr-auto'>
         <Col sm={8} xs={12}>
           <ItemCount stock='5' initial='1' />
         </Col>
