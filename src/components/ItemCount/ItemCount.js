@@ -46,8 +46,8 @@ export const ItemCount = ({ stock, initial, onAdd }) => {
 
   return (
     <React.Fragment>
-      <Col xs={4} className='ml-4'>
-        <Row>
+      <Col>
+        <Row className='text-center'>
           <Col className='btn btn-light boton-cont' id='reduceBtn' onClick={reduceCount}>
             -
             </Col>

@@ -22,7 +22,7 @@ export const objList = [
   },
   {
     id: '0m2b8nna',
-    title: 'Cupcake de chocholate con dulce de leche',
+    title: 'Cupcake de chocolate con dulce de leche',
     description: 'Cupcake de chocolate, con corazon de dulce de leche, y frosting de dulce de leche y queso crema',
     price: 35,
     pictureUrl: './objList/ddl_1000.jpg',

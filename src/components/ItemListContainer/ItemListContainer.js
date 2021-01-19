@@ -1,6 +1,5 @@
 import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-//import { ItemCount } from '../ItemCount/ItemCount'
 import { ItemList } from '../ItemList/ItemList'
 import './ItemListContainer.css'
 
@@ -8,9 +7,9 @@ export const ItemListContainer = ({ greeting }) => {
 
   return (
     <Container fluid>
-      <Row className='greetBack'>
+      <Row className='greetBack center'>
         <Row>
-          <Col className='greetHome slide-animate opacity-zero center'>
+          <Col className='greetHome slide-animate opacity-zero'>
             {greeting}
           </Col>
         </Row>
