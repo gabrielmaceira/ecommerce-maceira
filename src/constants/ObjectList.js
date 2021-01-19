@@ -5,6 +5,7 @@ export const objList = [
     description: 'Cupcake de chocolate amargo, con chips de chocolate y cubierta de ganache',
     price: 45,
     pictureUrl: './objList/doble-chocolate_1000.jpg',
+    stock: 4,
   },
   {
     id: 'asmasd12',
@@ -12,6 +13,7 @@ export const objList = [
     description: 'Cupcake Red Velvet con cubierta de vainilla',
     price: 40,
     pictureUrl: './objList/red-velvet_1000.jpg',
+    stock: 7,
   },
   {
     id: 'ds2s223g',
@@ -19,6 +21,7 @@ export const objList = [
     description: 'Cupcake de vainilla con cobertura de crema y cereza',
     price: 40,
     pictureUrl: './objList/funfetti_1000.jpg',
+    stock: 2,
   },
   {
     id: '0m2b8nna',
@@ -26,6 +29,7 @@ export const objList = [
     description: 'Cupcake de chocolate, con corazon de dulce de leche, y frosting de dulce de leche y queso crema',
     price: 35,
     pictureUrl: './objList/ddl_1000.jpg',
+    stock: 3,
   }
 
 

@@ -3,7 +3,7 @@ import { Row, Col } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
 import './ItemDetail.css'
 
-export const ItemDetail = ({ title, description, photo, price }) => {
+export const ItemDetail = ({ title, description, photo, price, stock }) => {
   return (<Row className='mt-3 itemDetail text-center justify-content-around'>
     <Col md={4} lg={5}>
       <img src={photo} className='itemDetailPhoto' alt={title}></img>
@@ -24,7 +24,7 @@ export const ItemDetail = ({ title, description, photo, price }) => {
       </Row>
       <Row className='justify-content-center mt-auto w-100 ml-auto mr-auto'>
         <Col sm={8} xs={12}>
-          <ItemCount stock='5' initial='1' />
+          <ItemCount stock={stock} initial='1' />
         </Col>
       </Row>
     </Col>
