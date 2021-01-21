@@ -7,7 +7,7 @@ import './NavBar.css'
 
 export const NavBar = () => {
 
-  return (<Navbar expand="md" id="navbar-bg">
+  return (<Navbar expand="md" id="navbar-bg" className='navbar-dark'>
     <Navbar.Brand id="brand">
       <Link to={'/'}>
         <img src={logo} className='header-logo' alt="logo" />

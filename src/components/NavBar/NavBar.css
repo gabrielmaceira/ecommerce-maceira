@@ -2,15 +2,14 @@
   color: white !important;
 }
 
-#navbar-bg {
-  background-image: radial-gradient(
-    ellipse farthest-corner at 0% 400%,
-    #9e1460 0%,
-    #660339 80%,
-    #92325f 70%,
-    #801a49 70%
-  );
+.navbar-dark {
+  position: sticky;
+  z-index: 1000;
 }
+
+  #navbar-bg {
+    background: rgba(54, 0, 23, 0.35);
+}  
 
 .header-logo {
   width: 7em;

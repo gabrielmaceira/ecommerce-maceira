@@ -35,7 +35,7 @@ export const ItemListContainer = ({ greeting }) => {
 
   return (
     <Container fluid>
-      <Row className='greetBack center'>
+      <Row className='greetBack center text-center'>
         <Row>
           <Col className='greetHome slide-animate opacity-zero'>
             {greeting}

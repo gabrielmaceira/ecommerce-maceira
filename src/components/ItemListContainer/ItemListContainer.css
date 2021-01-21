@@ -9,6 +9,7 @@
 }
 
 .greetBack {
+  margin-top: -7em;
   padding: 3em 2em;
   background: url(../../img/br_meghan-rodgers-QpeoWEazLlM-unsplash.jpg);
   background-repeat: no-repeat;
@@ -68,6 +69,11 @@
 @media (max-width: 800px) {
   .greetHome {
     font-size: 2em;
+    padding-top: 15em;
+    margin-bottom: 5em;
+  }
+  .greetBack {
+    margin-top: -25em;
   }
 }
 
