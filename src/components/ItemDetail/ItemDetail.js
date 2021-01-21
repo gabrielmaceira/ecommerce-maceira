@@ -18,7 +18,7 @@ export const ItemDetail = ({ title, description, photo, price, stock }) => {
         </Col>
       </Row>
       <Row className='w-100 ml-auto mr-auto'>
-        <Col xs={12} className='itemDetailPrice mt-4'>
+        <Col xs={12} className='itemDetailPrice mt-4 mb-4'>
           $ {price}
         </Col>
       </Row>

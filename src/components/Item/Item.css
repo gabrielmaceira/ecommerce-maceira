@@ -9,13 +9,13 @@
 }
 
 .thumbContainer {
-  margin: 0.5em 0.5em 0.5em 0.5em;
+  padding: 1em;
   border-radius: 1em;
   font-family: 'Poppins', sans-serif;
 }
 
 .thumbContainer:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   z-index: 1000;
   transition: transform 330ms ease-in-out;
 }
@@ -41,7 +41,6 @@
   .thumbContainer:hover {
     transform: scale(1);
     z-index: 1000;
-    transition: transform 330ms ease-in-out;
   }
   .thumbPrice {
     font-size: 1.5em;

@@ -11,17 +11,17 @@
 }
 
 .itemDetailTitle {
-  text-align: right !important;
+  text-align: left !important;
   font-size: 2.5em;
 }
 
 .itemDetailDescription {
-  text-align: right !important;
+  text-align: left !important;
   font-size: 1.3em;
 }
 
 .itemDetailPrice {
-  text-align: right !important;
+  text-align: center !important;
   font-size: 3em;
   font-weight: 600;
 }

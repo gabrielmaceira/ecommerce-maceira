@@ -2,10 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { ItemDetail } from '../ItemDetail/ItemDetail'
 import { FindObjectById } from '../../Utils/FindObjectById'
+import { useParams } from 'react-router-dom'
 
-export const ItemDetailContainer = ({ id }) => {
+export const ItemDetailContainer = () => {
 
   const [item, setItem] = useState()
+  const {id} = useParams()
 
   // promise que va a buscar los datos del objeto por id a nuestra API (archivo estatico)
   const retrieveItem = new Promise((resolve, reject) => {
