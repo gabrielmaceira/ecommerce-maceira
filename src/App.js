@@ -15,7 +15,7 @@ function App() {
         <Route path='/item'>
           <ItemDetailContainer id={'o1i2n3o1'} />
         </Route>
-        <Route path='/'>
+        <Route exact path='/'>
           <ItemListContainer greeting={greeting} />
         </Route>
       </Switch>
