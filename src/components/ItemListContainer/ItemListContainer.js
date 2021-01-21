@@ -13,7 +13,7 @@ export const ItemListContainer = ({ greeting }) => {
   // categoryId
   const { id } = useParams()
 
-  // promise que va a buscar la lista de items/objetos a nuestra API (archivo estatico)
+  // promise que va a buscar la lista de items/objetos a nuestra API (archivo estatico) y filtra por categoria
   const retrieveList = new Promise((resolve, reject) => {
     setTimeout(() => {
       let filteredList = objList

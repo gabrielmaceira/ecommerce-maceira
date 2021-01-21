@@ -23,7 +23,7 @@ export const ItemDetail = ({ title, description, photo, price, stock }) => {
         </Col>
       </Row>
       <Row className='justify-content-center mt-auto w-100 ml-auto mr-auto'>
-        <Col sm={8} xs={12}>
+        <Col xs={12}>
           <ItemCount stock={stock} initial='1' />
         </Col>
       </Row>
