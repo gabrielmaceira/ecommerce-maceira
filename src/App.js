@@ -1,17 +1,25 @@
 import './App.css';
 import { NavBar } from './components/NavBar/NavBar'
-/* import { ItemListContainer } from './components/ItemListContainer/ItemListContainer' */
+import { ItemListContainer } from './components/ItemListContainer/ItemListContainer'
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
 function App() {
 
-  /* let greeting = 'BIENVENID@S A DELICUPCAKES' */
+  let greeting = 'BIENVENID@S A DELICUPCAKES'
 
   return (
-    <div className="App">
+    <BrowserRouter>
       <NavBar />
-      {/* <ItemListContainer greeting={greeting}/> */}
-      <ItemDetailContainer id={'o1i2n3o1'} />
-    </div>
+      <Switch>
+        <Route path='/item'>
+          <ItemDetailContainer id={'o1i2n3o1'} />
+        </Route>
+        <Route path='/'>
+          <ItemListContainer greeting={greeting} />
+        </Route>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
