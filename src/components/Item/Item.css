@@ -21,7 +21,7 @@
 }
 
 .thumbTitle {
-  font-size: 1.4em;
+  font-size: 1.1em;
   font-weight: 500;
 }
 
@@ -32,16 +32,31 @@
 
 .thumbPrice {
   font-size: 1.15em;
+  text-align: center;
+  color: rgb(140, 140, 140);
 }
 
 @media(max-width: 576px) {
+  .thumbContainer {
+    padding: 0.3em;
+    border-radius: 1em;
+    font-family: 'Poppins', sans-serif;
+  }
+
   .thumbContainer:hover {
     transform: scale(1);
     z-index: 1000;
   }
-  .thumbPrice {
-    font-size: 1.5em;
+
+  .thumbTitle {
+    font-size: .92em;
+    padding-top: 0.3em;
   }
+
+  .thumbPrice {
+    font-size: 1em;
+  }
+
   .btn {
     padding: 1em;
     margin: auto;

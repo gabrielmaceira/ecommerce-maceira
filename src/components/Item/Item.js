@@ -1,11 +1,11 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import './Item.css'
 
 export const Item = ({ id, title, price, pictureUrl }) => {
 
-  return <Col xs={12} sm={5} lg={3} id={id} className='thumbContainer'>
+  return <Col xs={6} sm={4} lg={3} id={id} className='thumbContainer d-flex align-items-start flex-column '>
     <Link to={`/item/${id}`}>
       <Row >
         <Col>
@@ -20,12 +20,12 @@ export const Item = ({ id, title, price, pictureUrl }) => {
         {description}
       </Col> */}
       </Row>
-      <Row>
-        <Col className='thumbPrice pt-2 text-muted'>
-          $ {price}
-        </Col>
-      </Row>
     </Link>
+    <Row className='mt-auto w-100'>
+      <Col className='thumbPrice pt-2'>
+        $ {price}
+      </Col>
+    </Row>
   </Col>
 
 }
