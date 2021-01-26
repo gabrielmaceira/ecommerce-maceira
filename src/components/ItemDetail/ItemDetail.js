@@ -1,9 +1,17 @@
-import React from 'react'
-import { Row, Col } from 'react-bootstrap'
+import React, { useState } from 'react'
+import { Row, Col, Button } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
+import {Link} from 'react-router-dom'
 import './ItemDetail.css'
 
 export const ItemDetail = ({ title, description, photo, price, stock }) => {
+
+  const [quantity, setQuantity] = useState(0)
+
+  const onAdd = (value) => {
+    setQuantity(value)
+  }
+
   return (<Row className='mt-3 itemDetail text-center justify-content-around'>
     <Col md={4} lg={5}>
       <img src={photo} className='itemDetailPhoto' alt={title}></img>
@@ -23,9 +31,17 @@ export const ItemDetail = ({ title, description, photo, price, stock }) => {
         </Col>
       </Row>
       <Row className='justify-content-center mt-auto w-100 ml-auto mr-auto'>
-        <Col xs={12}>
-          <ItemCount stock={stock} initial='1' />
-        </Col>
+        {/*oculta el ItemCount si no se agrego el item al carrito*/}
+        {quantity === 0 && <Col xs={12}>
+          <ItemCount stock={stock} initial='1' onAdd={onAdd} />
+        </Col>}
+        {/*oculta el ItemCount si no se agrego el item al carrito*/}
+        {quantity > 0 && <Col xs={12}>
+          <Button variant='outline-danger btn-block mt-1 mb-4' id='onAdd' 
+          as={Link} to={`/cart`}>
+            Terminar mi compra
+            </Button>
+        </Col>}
       </Row>
     </Col>
   </Row>)
