@@ -8,23 +8,21 @@ export const ItemDetailContainer = () => {
 
   const [item, setItem] = useState()
   const { id } = useParams()
-
-  // promise que va a buscar los datos del objeto por id a nuestra API (archivo estatico)
-  const retrieveItem = new Promise((resolve, reject) => {
-    const obj = FindObjectById(id)
-    setTimeout(() =>
-      obj ? resolve(obj) : reject(), 2000)
-  })
-
   // carga de los datos del item al cargarse el componente
-  // saque el ,[] en el useEffect porque React se estaba quejando por retrieveItem
   useEffect(() => {
+    // promise que va a buscar los datos del objeto por id a nuestra API (archivo estatico)
+    const retrieveItem = new Promise((resolve, reject) => {
+      const obj = FindObjectById(id)
+      setTimeout(() =>
+        obj ? resolve(obj) : reject(), 2000)
+    })
+
     retrieveItem
       .then((res) => {
         setItem(res)
       })
       .catch((err) => console.log(err))
-  })
+  }, [id])
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
