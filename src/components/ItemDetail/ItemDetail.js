@@ -1,16 +1,10 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
 import {Link} from 'react-router-dom'
 import './ItemDetail.css'
 
-export const ItemDetail = ({ title, description, photo, price, stock }) => {
-
-  const [quantity, setQuantity] = useState(0)
-
-  const onAdd = (value) => {
-    setQuantity(value)
-  }
+export const ItemDetail = ({ title, description, photo, price, stock, onAdd, quantity }) => {
 
   return (<Row className='mt-3 itemDetail text-center justify-content-around'>
     <Col md={4} lg={5}>

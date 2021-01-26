@@ -13,25 +13,25 @@ export const ItemListContainer = ({ greeting }) => {
   // categoryId
   const { id } = useParams()
 
-  // promise que va a buscar la lista de items/objetos a nuestra API (archivo estatico) y filtra por categoria
-  const retrieveList = new Promise((resolve, reject) => {
-    setTimeout(() => {
-      let filteredList = objList
-      if (id !== undefined) {
-        filteredList = objList.filter(item => item.category === id)
-      }
-      objList.length > 0 ? resolve(filteredList) : reject("No hay datos")
-    }, 2000)
-  })
-
   // llenado de lista de items "items" al montarse el componente
   useEffect(() => {
+    // promise que va a buscar la lista de items/objetos a nuestra API (archivo estatico) y filtra por categoria
+    const retrieveList = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let filteredList = objList
+        if (id !== undefined) {
+          filteredList = objList.filter(item => item.category === id)
+        }
+        objList.length > 0 ? resolve(filteredList) : reject("No hay datos")
+      }, 2000)
+    })
+
     retrieveList
       .then((res) => {
         setItems(res)
       })
       .catch((err) => console.log(err))
-  })
+  }, [id])
 
   return (
     <Container fluid>

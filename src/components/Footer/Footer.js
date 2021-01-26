@@ -8,16 +8,16 @@ export const Footer = () => {
       <Col xs={12} sm={6} className='footer-main-text'>
         DeliCupcakes
       </Col>
-      <Col Col xs={12} sm={6} >
+      <Col xs={12} sm={6} >
         <Row>
           <Col xs={12}>
             Contacto
           </Col>
           <Col xs={12}>
-            <i class="fas fa-phone-alt"></i>  +54 11 4 864 1360
+            <i className="fas fa-phone-alt"></i>  +54 11 4 864 1360
           </Col>
           <Col xs={12}>
-            <i class="far fa-envelope"></i>  info@delicupcakes.com.ar
+            <i className="far fa-envelope"></i>  info@delicupcakes.com.ar
           </Col>
         </Row>
         <Row>
