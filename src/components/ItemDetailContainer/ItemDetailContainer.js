@@ -31,6 +31,7 @@ export const ItemDetailContainer = () => {
   return (
     <Container>
       {item && <ItemDetail
+        id={id}
         title={item.title}
         description={item.description}
         photo={item.pictureUrl}

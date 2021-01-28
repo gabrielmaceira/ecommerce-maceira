@@ -1,15 +1,41 @@
-import React, { useState } from 'react'
-import { Row, Col, Button } from 'react-bootstrap'
+import React, { useContext, useState } from 'react'
+import { Row, Col, Button, Modal } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { CartContext } from '../../context/CartContext'
 import './ItemDetail.css'
 
-export const ItemDetail = ({ title, description, photo, price, stock }) => {
+export const ItemDetail = ({ id, title, description, photo, price, stock }) => {
 
   const [quantity, setQuantity] = useState(0)
+  const { addItem } = useContext(CartContext)
 
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+
+  // agrega la cantidad seleccionada del item al carrito, y actualiza su cantidad
   const onAdd = (value) => {
-    setQuantity(value)
+    // agrega el item al carrito
+    const addItemWorked = addItem(
+      {
+        id: id,
+        title: title,
+        description: description,
+        photo: photo,
+        price: price,
+        stock: stock,
+      },
+      value)
+
+    if (addItemWorked) {
+      setQuantity(value)
+    }
+    else {
+      handleShow()
+    }
   }
 
   return (<Row className='mt-3 itemDetail text-center justify-content-around'>
@@ -37,12 +63,27 @@ export const ItemDetail = ({ title, description, photo, price, stock }) => {
         </Col>}
         {/*oculta el ItemCount si no se agrego el item al carrito*/}
         {quantity > 0 && <Col xs={12}>
-          <Button variant='outline-danger btn-block mt-1 mb-4' id='onAdd' 
-          as={Link} to={`/cart`}>
+          <Button variant='outline-danger btn-block mt-1 mb-4' id='onAdd'
+            as={Link} to={`/cart`}>
             Terminar mi compra
             </Button>
         </Col>}
+        <Col className='text-muted text-left mt-auto'>
+          Stock: {stock} unidades
+        </Col>
       </Row>
     </Col>
+    <Modal show={show} onHide={handleClose}>
+      <Modal.Header closeButton>
+        <Modal.Title>Problema de stock</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>Parece que estás queriendo agregar a tu carrito más items de los que tenemos en stock.
+        Reducí la cantidad y probá de nuevo</Modal.Body>
+      <Modal.Footer>
+        <Button variant="primary" onClick={handleClose}>
+          Entendido
+          </Button>
+      </Modal.Footer>
+    </Modal>
   </Row>)
 }
