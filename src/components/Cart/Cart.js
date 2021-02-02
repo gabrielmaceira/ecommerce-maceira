@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useLayoutEffect } from 'react'
 import { CartContext } from '../../context/CartContext'
 import { CartItem } from './CartItem'
 import { Container, Row, Col, Button } from 'react-bootstrap'
@@ -8,11 +8,15 @@ export const Cart = () => {
 
   const { itemsInCart, cartTotal, removeItem } = useContext(CartContext)
 
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0)
+  });
+
   return <Container className='d-flex align-items-center flex-column'>
     {itemsInCart.length > 0 ?
       <React.Fragment>
         <Col xs={12} sm={8}>
-          <h2>Items en el carrito</h2>
+          <h2 className='deliFont'>Items en el carrito</h2>
         </Col>
         {itemsInCart.map(e => {
           return <CartItem
