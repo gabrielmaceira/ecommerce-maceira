@@ -18,12 +18,15 @@ export const NavBar = () => {
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="ml-auto mr-5 center">
-        <Nav.Link as={Link} to={`/cart`} className="text-white">
-          <CartWidget />
-          <Badge pill variant="primary">{qyInCart}</Badge>
-        </Nav.Link>
-        <span className="vertical-divider ml-2 mr-2"></span>
-
+        {qyInCart > 0 &&
+          <React.Fragment>
+            <Nav.Link as={Link} to={`/cart`} className="text-white">
+              <CartWidget />
+              <Badge pill variant="primary">{qyInCart}</Badge>
+            </Nav.Link>
+            <span className="vertical-divider ml-2 mr-2"></span>
+          </React.Fragment>
+        }
         <NavLink to={'/'} className='navlink'>Home</NavLink>
 
         {/* uso de as=Link para hacer que se comporte como un componente Link */}

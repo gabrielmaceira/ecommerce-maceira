@@ -1,0 +1,71 @@
+.deliFont {
+  font-family: 'Poppins', sans-serif;
+}
+
+.cartThumbnail {
+  max-width: 100%;
+  max-height: 20vh;
+  object-fit: cover;
+  overflow: hidden !important;
+  border-radius: 1em;
+  padding: 0;
+  margin:0;
+}
+
+.cartContainer {
+  padding: 1em;
+  font-family: 'Poppins', sans-serif;
+}
+
+.cartTitle {
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.cartPrice {
+  font-size: 1.1em;
+  text-align: right;
+}
+
+.bgTotal {
+  background: gray;
+}
+
+.cartTotal {
+  font-size: 1.5em;
+  text-align: right;
+  font-family: 'Poppins', sans-serif;
+  color: white;
+  font-weight: bolder;
+}
+
+.removeItem:hover {
+  color: red;
+  font-size: large;
+}
+
+@media(max-width: 767px) {
+  .cartTotal {
+    font-size: 1.1em;
+  }
+
+  .cartThumbnail {
+    max-width: 100%;
+    max-height: 40vh;
+  }
+
+  .cartContainer {
+    padding: 0em;
+  }
+
+  .cartTitle {
+    font-size: .8em;
+    font-weight: 500;
+  }
+  
+  .cartPrice {
+    font-size: .7em;
+    text-align: right;
+  }
+
+}

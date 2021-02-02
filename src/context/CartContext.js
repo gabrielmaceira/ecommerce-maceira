@@ -8,6 +8,8 @@ export const CartProvider = ({ children }) => {
 
   const [qyInCart, setQyInCart] = useState(0)
 
+  const [cartTotal, setCartTotal] = useState(0)
+
   /* 
   formato item
         {
@@ -35,6 +37,7 @@ export const CartProvider = ({ children }) => {
       itemsInCart.push({ item: item, qy: qy })
       // suma la cantidad de items elegida al total del carrito
       setQyInCart(qyInCart + qy)
+      setCartTotal(getTotal())
     }
     else {
       const currentQy = itemsInCart[position].qy
@@ -42,6 +45,7 @@ export const CartProvider = ({ children }) => {
         itemsInCart[position] = { item: item, qy: currentQy + qy }
         // suma la cantidad de items elegida al total del carrito
         setQyInCart(qyInCart + qy)
+        setCartTotal(getTotal())
       }
       else {
         addItemWorked = false
@@ -62,6 +66,7 @@ export const CartProvider = ({ children }) => {
 
       itemsInCart.splice(position, 1);
     }
+    setCartTotal(getTotal())
 
   }
 
@@ -69,6 +74,7 @@ export const CartProvider = ({ children }) => {
   // deja itemsInCart vacio. vacia el cart
   const clear = () => {
     setItemsInCart([])
+    setCartTotal(0)
   }
 
 
@@ -89,9 +95,24 @@ export const CartProvider = ({ children }) => {
   }
 
 
+  // calcula el valor total del carrito
+  const getTotal = () => {
+    let total = 0
+    const len = itemsInCart.length
+    let i = 0
+
+    while (i < len) {
+      total += itemsInCart[i].item.price * itemsInCart[i].qy
+      i++
+    }
+
+    return total
+  }
+
+
   return (
     <CartContext.Provider
-      value={{ itemsInCart, setItemsInCart, addItem, removeItem, clear, isInCart, qyInCart, setQyInCart }}
+      value={{ itemsInCart, setItemsInCart, addItem, removeItem, clear, isInCart, qyInCart, setQyInCart, cartTotal }}
     >
       {children}
     </CartContext.Provider>
