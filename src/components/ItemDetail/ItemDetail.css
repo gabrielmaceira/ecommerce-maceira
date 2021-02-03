@@ -41,11 +41,11 @@
 @media(max-width: 767px) {
   .itemDetailTitle {
     text-align: left !important;
-    font-size: 2em;
+    font-size: 1.6em;
   }
   .itemDetailDescription {
     text-align: left !important;
-    font-size: 1.2em;
+    font-size: 1em;
     font-style: italic;
   }
   .itemDetailPrice {

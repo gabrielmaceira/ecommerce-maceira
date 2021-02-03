@@ -45,10 +45,10 @@ export const ItemDetail = ({ id, title, description, photo, price, stock }) => {
     </Col>
     <Col md={7} lg={6} className='d-flex align-items-start flex-column itemDetailData'>
       <Row>
-        <Col xs={12} className='itemDetailTitle'>
+        <Col xs={12} className='itemDetailTitle mt-1'>
           {title}
         </Col>
-        <Col xs={12} className='itemDetailDescription text-muted'>
+        <Col xs={12} className='itemDetailDescription text-muted mt-1'>
           {description}
         </Col>
       </Row>
