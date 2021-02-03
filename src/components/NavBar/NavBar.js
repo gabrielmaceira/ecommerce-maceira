@@ -1,13 +1,34 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import { CartWidget } from '../CartWidget/CartWidget'
 import { CartContext } from '../../context/CartContext'
+import { getFirestore } from '../../firebase'
 import logo from '../../img/logo.png'
 import { Link, NavLink } from 'react-router-dom'
 import './NavBar.css'
 
 export const NavBar = () => {
   const { qyInCart } = useContext(CartContext)
+
+  const [categories, setCategories] = useState([])
+
+  useEffect(() => {
+    const db = getFirestore()
+    const categoryCollection = db.collection("categories")
+
+    categoryCollection.get().then((querySnapshot) => {
+      if (querySnapshot.size === 0) {
+        console.log("Sin resultados")
+      }
+      setCategories(querySnapshot.docs.map(doc => {
+        const fullData = { id: doc.id, ...doc.data() }
+        return fullData
+      }))
+    }).catch((error) => {
+      console.log("Error trayendo los resultados", error)
+    }).finally(() => {
+    })
+  }, [])
 
   return (<Navbar expand="md" id="navbar-bg" className='navbar-dark'>
     <Navbar.Brand id="brand">
@@ -31,10 +52,14 @@ export const NavBar = () => {
 
         {/* uso de as=Link para hacer que se comporte como un componente Link */}
         <NavDropdown title="Productos" id="basic-nav-dropdown">
-          <NavDropdown.Item as={Link} to={`/category/cupcakes_rellenos`}>Cupcakes rellenos</NavDropdown.Item>
-          <NavDropdown.Item as={Link} to={`/category/cupcakes_sin_relleno`}>Cupcakes sin relleno</NavDropdown.Item>
-          <NavDropdown.Item as={Link} to={`/category/masas_finas`}>Masas finas</NavDropdown.Item>
-          <NavDropdown.Item as={Link} to={`/category/chocolates`}>Chocolates</NavDropdown.Item>
+          {categories.length > 0 &&
+            categories.map((category) => {
+              return <NavDropdown.Item
+                key={category.key}
+                as={Link}
+                to={`/category/${category.key}`}>{category.name}</NavDropdown.Item>
+            })
+          }
         </NavDropdown>
 
         <NavLink to={'/about'} className='navlink'>Sobre nosotros</NavLink>

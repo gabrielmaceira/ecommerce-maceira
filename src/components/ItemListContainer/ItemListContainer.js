@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import { objList } from '../../constants/ObjectList'
 import { ItemList } from '../ItemList/ItemList'
 import { Loader } from '../Loader/Loader'
 import { useParams } from 'react-router-dom'
+import { getFirestore } from '../../firebase'
 import './ItemListContainer.css'
 
 export const ItemListContainer = ({ greeting }) => {
@@ -19,25 +19,28 @@ export const ItemListContainer = ({ greeting }) => {
 
   // llenado de lista de items "items" al montarse el componente
   useEffect(() => {
-    // promise que va a buscar la lista de items/objetos a nuestra API (archivo estatico) y filtra por categoria
-    const retrieveList = new Promise((resolve, reject) => {
       setIsLoading(true)
 
-      setTimeout(() => {
-        let filteredList = objList
-        if (id !== undefined) {
-          filteredList = objList.filter(item => item.category === id)
-        }
-        objList.length > 0 ? resolve(filteredList) : reject("No hay datos")
-      }, 2000)
-    })
+      // carga de firestore
+      const db = getFirestore()
+      let itemCollection = db.collection("items")
+      
+      if (id !== undefined) {
+        itemCollection = itemCollection.where('category','==',id)
+      }
 
-    retrieveList
-      .then((res) => {
+      itemCollection.get().then((querySnapshot) => {
+        if (querySnapshot.size === 0) {
+          console.log("Sin resultados")
+        }
+        setItems(querySnapshot.docs.map(doc => {
+          const fullData = {id: doc.id, ...doc.data()}
+          return fullData}))
+      }).catch((error) => {
+        console.log("Error trayendo los resultados", error)
+      }).finally(()=> {
         setIsLoading(false)
-        setItems(res)
       })
-      .catch((err) => console.log(err))
   }, [id])
 
   return (
@@ -48,18 +51,11 @@ export const ItemListContainer = ({ greeting }) => {
             {greeting}
           </Col>
         </Row>
-        {/*         <Row className='w-100'>
-          <Col className='greetHome slide-animate-2 opacity-zero'>
-            "MAS TEXTO"
-            </Col>
-        </Row> */}
       </Row>
-      {/*       <Row className='align-center'>
-        <ItemCount stock='0' initial='1' />
-      </Row> */}
 
       {isLoading ? <Loader /> :
-      <ItemList items={items} />
+      items && items.length > 0 ? <ItemList items={items} /> :
+      <h3 className='mt-5 deliFont'>No se encontraron items para esta categoría</h3>
     }
     </Container>
   )

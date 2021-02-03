@@ -3,6 +3,7 @@ import { Row, Col, Button, Modal } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../context/CartContext'
+import { SinStock } from '../SinStock/SinStock'
 import './ItemDetail.css'
 
 export const ItemDetail = ({ id, title, description, photo, price, stock }) => {
@@ -68,9 +69,12 @@ export const ItemDetail = ({ id, title, description, photo, price, stock }) => {
             Terminar mi compra
             </Button>
         </Col>}
-        <Col className='text-muted text-left mt-auto'>
-          Stock: {stock} unidades
+        <Row className='justify-content-between mt-auto w-100 ml-auto mr-auto'>
+        <Col xs={5} className='text-muted text-left mt-auto'>
+          Stock: {stock} unidades 
         </Col>
+        <SinStock stock={stock} size='5'/>
+      </Row>
       </Row>
     </Col>
     <Modal show={show} onHide={handleClose}>

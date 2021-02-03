@@ -4,6 +4,7 @@ import { ItemListContainer } from './components/ItemListContainer/ItemListContai
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer'
 import { Footer } from './components/Footer/Footer'
 import { Cart } from './components/Cart/Cart'
+import {About} from './components/About/About'
 import { CartProvider } from './context/CartContext'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
@@ -27,7 +28,7 @@ function App() {
             <ItemDetailContainer />
           </Route>
           <Route path='/about'>
-            <ItemListContainer greeting={about} />
+            <About greeting={about} />
           </Route>
           <Route path='/cart'>
             <Cart />
