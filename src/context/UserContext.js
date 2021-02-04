@@ -19,7 +19,7 @@ export const UserProvider = ({ children }) => {
   */
 
   const clearData = () => {
-    setUserData()
+    setUserData(undefined)
   }
 
   return (

@@ -14,7 +14,7 @@ Uso de FireBase para persistencia de datos
 
 Uso de CryptoJS para encriptar y desencriptar las contraseñas de usuarios - https://www.npmjs.com/package/crypto-js
 
-
+Uso de dateformat para dar formato a las fechas - https://www.npmjs.com/package/dateformat
 
 ### Autor
 

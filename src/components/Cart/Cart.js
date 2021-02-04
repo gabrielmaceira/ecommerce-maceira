@@ -3,23 +3,56 @@ import { CartContext } from '../../context/CartContext'
 import { UserContext } from '../../context/UserContext'
 import { CartItem } from './CartItem'
 import { LoginForm } from '../LoginForm/LoginForm'
+import { Loader } from '../Loader/Loader'
 import { Container, Row, Col, Button } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
+import { getFirestore } from '../../firebase'
+import firebase from 'firebase/app'
+import '@firebase/firestore'
 import './Cart.css'
 
 export const Cart = () => {
 
-  const { itemsInCart, cartTotal, removeItem } = useContext(CartContext)
+  const { itemsInCart, cartTotal, removeItem, clear } = useContext(CartContext)
   const { userData } = useContext(UserContext)
 
   const [show, setShow] = useState(false)
+  
+  // para mostrar el spinner si esta cargando
+  const [isLoading, setIsLoading] = useState(false)
+
+  // para redirigir a la pantalla de ordenes
+  const history = useHistory()
 
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
-  });
+  })
+
+  const sendOrder = () => {
+    const db = getFirestore()
+    const orders = db.collection("orders")
+    const newOrder = {
+      buyer: userData.id,
+      items: itemsInCart,
+      date: firebase.firestore.Timestamp.fromDate(new Date()),
+      total: cartTotal,
+    }
+
+    setIsLoading(true)
+
+    orders.add(newOrder).then(({ id }) => {
+      clear()
+      return history.push('/orders')
+    }).catch(err => {
+      console.log(err)
+    }).finally(()=> {
+      setIsLoading(false)
+    })
+  }
 
   return <Container className='d-flex flex-column align-items-center mt-3'>
-    {itemsInCart.length > 0 ?
+    {isLoading ? <Loader /> :
+    itemsInCart.length > 0 ?
       <React.Fragment>
         <Row className='w-100'>
           <Col xs={12} md={7}>
@@ -55,7 +88,7 @@ export const Cart = () => {
                 </Row>
                 <Row className='mt-auto'>
                   <Col xs={12} className='mt-auto'>
-                    <Button className='btn btn-primary btn-block'>Completar pedido</Button>
+                    <Button className='btn btn-primary btn-block' onClick={() => sendOrder()}>Completar pedido</Button>
                   </Col>
                 </Row>
               </React.Fragment>
@@ -77,7 +110,7 @@ export const Cart = () => {
       <Row className='mt-4 text-center'>
         <Col>
           <h2 className='deliFont'>No hay items en tu carrito</h2>
-          <Button as={Link} to={`/`} variant='outline-primary' className='deliFont'>Empeza a comprar</Button>
+          <Button as={Link} to={`/`} variant='outline-primary' className='deliFont'>Empezá a comprar</Button>
         </Col>
       </Row>
     }

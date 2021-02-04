@@ -12,7 +12,7 @@ import './NavBar.css'
 export const NavBar = () => {
   const { qyInCart } = useContext(CartContext)
   const { userData, clearData } = useContext(UserContext)
-  
+
   const [categories, setCategories] = useState([])
   // mostrar el modal de registro/login
   const [show, setShow] = useState(false)
@@ -68,11 +68,14 @@ export const NavBar = () => {
         </NavDropdown>
 
         <NavLink to={'/about'} className='navlink'>Sobre nosotros</NavLink>
-        
-        {userData === undefined ? 
-        <NavLink to={'#'} className='navlink ml-1' onClick={() => setShow(true)}>Login</NavLink>
-        :
-        <NavLink to={'#'} className='navlink ml-1' onClick={() => clearData()}>Logout</NavLink>
+
+        {userData === undefined ?
+          <NavLink to={'#'} className='navlink ml-1' onClick={() => setShow(true)}>Login</NavLink>
+          :
+          <NavDropdown title="Perfil" id="basic-nav-dropdown" className='mr-5 dropdown-menu-left'>
+            <NavDropdown.Item to={'/orders'} as={Link}>Órdenes</NavDropdown.Item>
+            <NavDropdown.Item to={'#'} onClick={() => clearData()}>Logout</NavDropdown.Item>
+          </NavDropdown>
         }
       </Nav>
     </Navbar.Collapse>

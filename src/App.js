@@ -5,6 +5,7 @@ import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetail
 import { Footer } from './components/Footer/Footer'
 import { Cart } from './components/Cart/Cart'
 import { About } from './components/About/About'
+import { OrderListContainer } from './components/OrderListContainer/OrderListContainer'
 import { CartProvider } from './context/CartContext'
 import { UserProvider } from './context/UserContext'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -28,6 +29,9 @@ function App() {
             </Route>
             <Route path='/item/:id'>
               <ItemDetailContainer />
+            </Route>
+            <Route path='/orders'>
+              <OrderListContainer />
             </Route>
             <Route path='/about'>
               <About greeting={about} />
