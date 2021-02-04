@@ -25,8 +25,13 @@ export const ItemListContainer = ({ greeting }) => {
       const db = getFirestore()
       let itemCollection = db.collection("items")
       
+      
       if (id !== undefined) {
         itemCollection = itemCollection.where('category','==',id)
+      }
+      else {
+        // no hay 20 items en la base pero por las dudas
+        itemCollection = itemCollection.limit(20)
       }
 
       itemCollection.get().then((querySnapshot) => {
