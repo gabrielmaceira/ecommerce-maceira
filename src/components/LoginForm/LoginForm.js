@@ -164,10 +164,10 @@ export const LoginForm = ({ show, handleClose, loginState }) => {
             <Form.Control required type="password" placeholder="Password" />
           </Form.Group>
           <Row className='justify-content-end'>
-            <Col xs={4}>
+            <Col xs={6}>
               <Button className='btn-block' variant="primary" type="submit">Enviar</Button>
             </Col>
-            <Col xs={4}>
+            <Col xs={6}>
               <Button className='btn-block' variant="danger" onClick={closeModal}>Cancelar</Button>
             </Col>
           </Row>
@@ -243,10 +243,10 @@ export const LoginForm = ({ show, handleClose, loginState }) => {
             </Form.Group>
 
             <Row className='justify-content-end'>
-              <Col xs={4}>
+              <Col xs={6}>
                 <Button className='btn-block' variant="primary" type="submit">Enviar</Button>
               </Col>
-              <Col xs={4}>
+              <Col xs={6}>
                 <Button className='btn-block' variant="danger" onClick={closeModal}>Cancelar</Button>
               </Col>
             </Row>
