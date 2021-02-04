@@ -40,7 +40,7 @@ export const ItemDetail = ({ id, title, description, photo, price, stock }) => {
   }
 
   return (<Row className='mt-3 itemDetail text-center justify-content-around'>
-    <Col md={4} lg={5}>
+    <Col md={5} lg={4}>
       <img src={photo} className='itemDetailPhoto' alt={title}></img>
     </Col>
     <Col md={7} lg={6} className='d-flex align-items-start flex-column itemDetailData'>

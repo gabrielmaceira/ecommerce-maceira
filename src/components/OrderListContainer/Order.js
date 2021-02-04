@@ -27,23 +27,25 @@ export const Order = ({ id, items, total, date, handleEvent }) => {
               Orden {id} - {formattedDate}
             </Col>
             <Col xs={12} className='text-left deliFont'>
-              <Col className='pl-0'>Envío a: {userData.firstName} {userData.lastName}</Col>
-              <Col className='pl-0'>Dirección: {userData.address}</Col>
-              <Col className='pl-0'>Teléfono: {userData.phone}</Col>
+              <Col className='pl-0 mt-2'><b>Envío a:</b> {userData.firstName} {userData.lastName}</Col>
+              <Col className='pl-0'><b>Dirección:</b> {userData.address}</Col>
+              <Col className='pl-0'><b>Teléfono:</b> {userData.phone}</Col>
             </Col>
-            <Col xs={12} className='mt-2'>
+            <Col xs={12} className='mt-3'>
               {items.map(item => {
                 console.log(item.item.photo)
                 return <React.Fragment key={item.item.id}>
                   <Row className='align-items-center mb-2'>
-                    <Col>
+                    <Col xs={4} md={5}>
                       <img src={item.item.photo} className='cartThumbnail ' alt={item.id}></img>
                     </Col>
-                    <Col className='deliFont'>
-                      {item.item.title} x {item.qy}
-                    </Col>
-                    <Col className='deliFont'>
-                      $ {item.item.price * item.qy}
+                    <Col className='m-0 p-0 text-left'>
+                      <Col className='deliFont' xs={8} md={12}>
+                        {item.item.title} x {item.qy}
+                      </Col>
+                      <Col className='deliFont text-right' xs={12} md={12}>
+                        $ {item.item.price * item.qy}
+                      </Col>
                     </Col>
                   </Row>
                 </React.Fragment>
