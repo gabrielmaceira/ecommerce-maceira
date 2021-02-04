@@ -22,6 +22,10 @@
   font-weight: 500;
 }
 
+.cartHeader {
+  font-size: 1.4em;
+}
+
 .cartPrice {
   font-size: 1.1em;
   text-align: right;
@@ -66,10 +70,19 @@
     font-size: .8em;
     font-weight: 500;
   }
+
+  .cartHeader {
+    font-size: 1.2em;
+  }
   
   .cartPrice {
     font-size: .7em;
     text-align: right;
+  }
+
+  .cartContactData {
+    margin-top: 2em;
+    font-size: 1.1em;
   }
 
 }

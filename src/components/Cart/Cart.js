@@ -18,13 +18,13 @@ export const Cart = () => {
     window.scrollTo(0, 0)
   });
 
-  return <Container className='d-flex flex-column align-items-center mt-5'>
+  return <Container className='d-flex flex-column align-items-center mt-3'>
     {itemsInCart.length > 0 ?
       <React.Fragment>
         <Row className='w-100'>
-          <Col xs={12} sm={7}>
+          <Col xs={12} md={7}>
             <Col xs={12}>
-              <h2 className='deliFont'>Items en el carrito</h2>
+              <h2 className='deliFont cartHeader'>Items en el carrito</h2>
             </Col>
             {itemsInCart.map(e => {
               return <CartItem
@@ -39,7 +39,7 @@ export const Cart = () => {
             })}
             <Col xs={12} className='bgTotal cartTotal'>Total: $ {cartTotal}</Col>
           </Col>
-          <Col xs={12} sm={5} className='d-flex flex-column deliFont cartContactData'>
+          <Col xs={12} md={5} className='d-flex flex-column deliFont cartContactData'>
             {userData !== undefined ?
               <React.Fragment>
                 <Row>
