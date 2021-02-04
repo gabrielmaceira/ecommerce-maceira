@@ -4,8 +4,9 @@ import { ItemListContainer } from './components/ItemListContainer/ItemListContai
 import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer'
 import { Footer } from './components/Footer/Footer'
 import { Cart } from './components/Cart/Cart'
-import {About} from './components/About/About'
+import { About } from './components/About/About'
 import { CartProvider } from './context/CartContext'
+import { UserProvider } from './context/UserContext'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 function App() {
@@ -15,27 +16,29 @@ function App() {
 
   return (
     <BrowserRouter>
-      <CartProvider>
-        <NavBar />
-        <Switch>
-          <Route exact path='/'>
-            <ItemListContainer greeting={greeting} />
-          </Route>
-          <Route path='/category/:id'>
-            <ItemListContainer greeting={greeting} />
-          </Route>
-          <Route path='/item/:id'>
-            <ItemDetailContainer />
-          </Route>
-          <Route path='/about'>
-            <About greeting={about} />
-          </Route>
-          <Route path='/cart'>
-            <Cart />
-          </Route>
-        </Switch>
-        <Footer />
-      </CartProvider>
+      <UserProvider>
+        <CartProvider>
+          <NavBar />
+          <Switch>
+            <Route exact path='/'>
+              <ItemListContainer greeting={greeting} />
+            </Route>
+            <Route path='/category/:id'>
+              <ItemListContainer greeting={greeting} />
+            </Route>
+            <Route path='/item/:id'>
+              <ItemDetailContainer />
+            </Route>
+            <Route path='/about'>
+              <About greeting={about} />
+            </Route>
+            <Route path='/cart'>
+              <Cart />
+            </Route>
+          </Switch>
+          <Footer />
+        </CartProvider>
+      </UserProvider>
     </BrowserRouter>
   );
 }

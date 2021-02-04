@@ -12,6 +12,8 @@ Uso de React Router Dom para la navegación
 
 Uso de FireBase para persistencia de datos
 
+Uso de CryptoJS para encriptar y desencriptar las contraseñas de usuarios - https://www.npmjs.com/package/crypto-js
+
 
 
 ### Autor

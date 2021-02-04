@@ -1,0 +1,21 @@
+.loginLink {
+  background-color: transparent !important;
+  border-color: transparent !important;
+  color: blue;
+  padding: 0;
+  padding-bottom: 3px;
+  transition: none !important;
+  outline: 0;
+}
+
+.loginLink:hover {
+  color: blue;
+  text-decoration: underline;
+  outline: 0;
+}
+
+.loginLink:focus {
+  color: blue;
+  transition: none !important; 
+  outline: 0;
+}

@@ -2,15 +2,20 @@ import React, { useContext, useState, useEffect } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
 import { CartWidget } from '../CartWidget/CartWidget'
 import { CartContext } from '../../context/CartContext'
+import { UserContext } from '../../context/UserContext'
 import { getFirestore } from '../../firebase'
+import { LoginForm } from '../LoginForm/LoginForm'
 import logo from '../../img/logo.png'
 import { Link, NavLink } from 'react-router-dom'
 import './NavBar.css'
 
 export const NavBar = () => {
   const { qyInCart } = useContext(CartContext)
-
+  const { userData, clearData } = useContext(UserContext)
+  
   const [categories, setCategories] = useState([])
+  // mostrar el modal de registro/login
+  const [show, setShow] = useState(false)
 
   useEffect(() => {
     const db = getFirestore()
@@ -63,9 +68,17 @@ export const NavBar = () => {
         </NavDropdown>
 
         <NavLink to={'/about'} className='navlink'>Sobre nosotros</NavLink>
-
+        
+        {userData === undefined ? 
+        <NavLink to={'#'} className='navlink ml-1' onClick={() => setShow(true)}>Login</NavLink>
+        :
+        <NavLink to={'#'} className='navlink ml-1' onClick={() => clearData()}>Logout</NavLink>
+        }
       </Nav>
     </Navbar.Collapse>
+
+    <LoginForm show={show} handleClose={() => setShow(false)} />
+
   </Navbar>)
 
 }
