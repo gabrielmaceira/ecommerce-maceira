@@ -44,6 +44,10 @@
   font-size: large;
 }
 
+.cartContactData {
+  font-size: 1.1em;
+}
+
 @media(max-width: 767px) {
   .cartTotal {
     font-size: 1.1em;

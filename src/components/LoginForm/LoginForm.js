@@ -6,9 +6,9 @@ import { getFirestore } from '../../firebase'
 import CryptoJS from 'crypto-js'
 import './LoginForm.css'
 
-export const LoginForm = ({ show, handleClose }) => {
+export const LoginForm = ({ show, handleClose, loginState }) => {
 
-  const [login, setLogin] = useState(true)
+  const [login, setLogin] = useState(loginState)
   const [errors, setErrors] = useState([])
 
   const { setUserData } = useContext(UserContext)
@@ -125,7 +125,7 @@ export const LoginForm = ({ show, handleClose }) => {
             firstName: firstName,
             lastName: lastName,
             address: address,
-            phone_number: phone,
+            phone: phone,
             email: email,
             password: encPassword,
           }

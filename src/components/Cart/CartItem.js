@@ -6,7 +6,7 @@ import './Cart.css'
 
 export const CartItem = ({ id, photo, title, price, quantity, removeItem }) => {
 
-  return <Col id={id} xs={12} sm={8} className='cartContainer d-flex align-items-center flex-column mt-1 mb-2 '>
+  return <Col id={id} xs={12} className='d-flex align-items-center flex-column cartContainer mt-1 mb-2 '>
     <Row className='w-100 align-items-center'>
       <Col xs={1}>
         <XCircle as='button' className='removeItem' onClick={() => removeItem(id)} />

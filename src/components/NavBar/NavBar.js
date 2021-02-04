@@ -77,7 +77,7 @@ export const NavBar = () => {
       </Nav>
     </Navbar.Collapse>
 
-    <LoginForm show={show} handleClose={() => setShow(false)} />
+    <LoginForm show={show} handleClose={() => setShow(false)} loginState={true} />
 
   </Navbar>)
 
