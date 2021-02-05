@@ -231,7 +231,7 @@ export const LoginForm = ({ show, handleClose, loginState }) => {
               <Form.Control required type="password" placeholder="Password"
                 className={hasError("password") && 'is-invalid'} />
               <Error display={hasError("password") ? 'inline-block' : 'none'}
-                message={hasError("password") && 'La contraseña debe contener visibles y no sólo espacios'} />
+                message={hasError("password") && 'La contraseña debe contener entre 8 y 15 caracteres, con al menos un número, una minúscula, y una mayúscula'} />
             </Form.Group>
 
             <Form.Group controlId="formGroupRepeatPassword">
