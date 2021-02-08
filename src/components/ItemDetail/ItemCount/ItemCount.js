@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Row, Col, Button } from 'react-bootstrap'
-import {disableButton, enableButton} from '../../../utils/EnableDisableTag'
+import {disableButton, enableButton} from '../../../util/EnableDisableTag'
 import './ItemCount.css'
 
 // uso carpeta Utils para funciones de deshabilitado y habilitado de tags por ID
