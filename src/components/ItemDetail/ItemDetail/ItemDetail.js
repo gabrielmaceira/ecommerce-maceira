@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
-import { ItemCount } from '../../ItemCount/ItemCount'
+import { ItemCount } from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
 import { CartContext } from '../../../context/CartContext'
 import { SinStock } from '../../SinStock/SinStock'
