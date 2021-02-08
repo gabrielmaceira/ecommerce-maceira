@@ -16,7 +16,7 @@ export const CartItem = ({ id, photo, title, price, quantity, removeItem }) => {
           <img src={photo} className='cartThumbnail' alt={title}></img>
         </Link>
       </Col>
-      <Col xs={5} className='cartTitle'>
+      <Col xs={5} className='cartHeader'>
         {title} x {quantity}
       </Col>
       <Col className='cartPrice'>

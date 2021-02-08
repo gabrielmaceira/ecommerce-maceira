@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Order } from './Order'
+import { Order } from '../Order/Order'
 import { Container, Accordion } from 'react-bootstrap'
 
 export const OrderList = ({ orders }) => {

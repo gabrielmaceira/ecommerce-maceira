@@ -1,6 +1,6 @@
 import React from 'react'
 import { Row, Col } from 'react-bootstrap'
-import { SinStock } from '../SinStock/SinStock'
+import { SinStock } from '../../SinStock/SinStock'
 import { Link } from 'react-router-dom'
 import './Item.css'
 

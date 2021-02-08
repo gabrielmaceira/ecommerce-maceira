@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import { ItemList } from '../ItemList/ItemList'
-import { Loader } from '../Loader/Loader'
+import { Loader } from '../../Loader/Loader'
 import { useParams } from 'react-router-dom'
-import { getFirestore } from '../../firebase'
+import { getFirestore } from '../../../firebase'
 import './ItemListContainer.css'
 
 export const ItemListContainer = ({ greeting }) => {

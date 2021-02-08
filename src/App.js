@@ -1,11 +1,11 @@
 import './App.css';
-import { NavBar } from './components/NavBar/NavBar'
-import { ItemListContainer } from './components/ItemListContainer/ItemListContainer'
-import { ItemDetailContainer } from './components/ItemDetailContainer/ItemDetailContainer'
+import { NavBarContainer } from './components/NavBar/NavBarContainer/NavBarContainer'
+import { ItemListContainer } from './components/ItemList/ItemListContainer/ItemListContainer'
+import { ItemDetailContainer } from './components/ItemDetail/ItemDetailContainer/ItemDetailContainer'
 import { Footer } from './components/Footer/Footer'
-import { Cart } from './components/Cart/Cart'
+import { Cart } from './components/Cart/Cart/Cart'
 import { About } from './components/About/About'
-import { OrderListContainer } from './components/OrderListContainer/OrderListContainer'
+import { OrderListContainer } from './components/Orders/OrderListContainer/OrderListContainer'
 import { CartProvider } from './context/CartContext'
 import { UserProvider } from './context/UserContext'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -19,7 +19,7 @@ function App() {
     <BrowserRouter>
       <UserProvider>
         <CartProvider>
-          <NavBar />
+          <NavBarContainer />
           <Switch>
             <Route exact path='/'>
               <ItemListContainer greeting={greeting} />

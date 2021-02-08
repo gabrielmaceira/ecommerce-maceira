@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { ItemDetail } from '../ItemDetail/ItemDetail'
-import { getFirestore } from '../../firebase'
+import { getFirestore } from '../../../firebase'
 import { useParams } from 'react-router-dom'
-import { Loader } from '../Loader/Loader'
+import { Loader } from '../../Loader/Loader'
 
 export const ItemDetailContainer = () => {
 

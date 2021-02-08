@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { Container } from 'react-bootstrap'
-import { OrderList } from './OrderList'
-import { Loader } from '../Loader/Loader'
+import { OrderList } from '../OrderList/OrderList'
+import { Loader } from '../../Loader/Loader'
 import { useHistory } from 'react-router-dom'
-import { UserContext } from '../../context/UserContext'
-import { getFirestore } from '../../firebase'
+import { UserContext } from '../../../context/UserContext'
+import { getFirestore } from '../../../firebase'
 import './OrderListContainer.css'
 
 export const OrderListContainer = () => {

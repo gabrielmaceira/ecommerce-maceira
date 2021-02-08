@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { Card, Button, Accordion, Col, Container, Row } from 'react-bootstrap'
-import { UserContext } from '../../context/UserContext'
+import { UserContext } from '../../../context/UserContext'
 import dateformat from 'dateformat'
 
 export const Order = ({ id, items, total, date, handleEvent }) => {

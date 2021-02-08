@@ -1,39 +1,19 @@
-import React, { useContext, useState, useEffect } from 'react'
+import React, { useContext, useState } from 'react'
 import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
-import { CartWidget } from '../CartWidget/CartWidget'
-import { CartContext } from '../../context/CartContext'
-import { UserContext } from '../../context/UserContext'
-import { getFirestore } from '../../firebase'
-import { LoginForm } from '../LoginForm/LoginForm'
-import logo from '../../img/logo.png'
+import { CartWidget } from '../../Cart/CartWidget/CartWidget'
+import { CartContext } from '../../../context/CartContext'
+import { UserContext } from '../../../context/UserContext'
+import { LoginForm } from '../../LoginForm/LoginForm'
+import logo from '../../../img/logo.png'
 import { Link, NavLink } from 'react-router-dom'
 import './NavBar.css'
 
-export const NavBar = () => {
+export const NavBar = ({ categories }) => {
   const { qyInCart } = useContext(CartContext)
   const { userData, clearData } = useContext(UserContext)
 
-  const [categories, setCategories] = useState([])
   // mostrar el modal de registro/login
   const [show, setShow] = useState(false)
-
-  useEffect(() => {
-    const db = getFirestore()
-    const categoryCollection = db.collection("categories")
-
-    categoryCollection.get().then((querySnapshot) => {
-      if (querySnapshot.size === 0) {
-        console.log("Sin resultados")
-      }
-      setCategories(querySnapshot.docs.map(doc => {
-        const fullData = { id: doc.id, ...doc.data() }
-        return fullData
-      }))
-    }).catch((error) => {
-      console.log("Error trayendo los resultados", error)
-    }).finally(() => {
-    })
-  }, [])
 
   return (<Navbar expand="md" id="navbar-bg" className='navbar-dark'>
     <Navbar.Brand id="brand">
@@ -57,7 +37,7 @@ export const NavBar = () => {
 
         {/* uso de as=Link para hacer que se comporte como un componente Link */}
         <NavDropdown title="Productos" id="basic-nav-dropdown">
-          {categories.length > 0 &&
+          {categories && categories.length > 0 &&
             categories.map((category) => {
               return <NavDropdown.Item
                 key={category.key}
