@@ -6,6 +6,7 @@ import { Footer } from './components/Footer/Footer'
 import { Cart } from './components/Cart/Cart/Cart'
 import { About } from './components/About/About'
 import { OrderListContainer } from './components/Orders/OrderListContainer/OrderListContainer'
+import { NoMatch } from './components/NoMatch/NoMatch'
 import { CartProvider } from './context/CartContext'
 import { UserProvider } from './context/UserContext'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -38,6 +39,9 @@ function App() {
             </Route>
             <Route path='/cart'>
               <Cart />
+            </Route>
+            <Route>
+              <NoMatch />
             </Route>
           </Switch>
           <Footer />
