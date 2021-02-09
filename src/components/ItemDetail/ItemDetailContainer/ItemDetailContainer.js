@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useLayoutEffect, useContext } from 'react'
+import React, { useState, useEffect, useLayoutEffect } from 'react'
 import { Container } from 'react-bootstrap'
 import { ItemDetail } from '../ItemDetail/ItemDetail'
-import { CartContext } from '../../../context/CartContext'
 import { getFirestore } from '../../../firebase'
 import { useParams } from 'react-router-dom'
 import { Loader } from '../../Loader/Loader'
@@ -9,10 +8,7 @@ import { Loader } from '../../Loader/Loader'
 export const ItemDetailContainer = () => {
 
   const [item, setItem] = useState()
-  const [quantity, setQuantity] = useState(0)
   const [show, setShow] = useState(false)
-
-  const { addItem } = useContext(CartContext)
 
   // para mostrar el spinner si esta cargando
   const [isLoading, setIsLoading] = useState(false)
@@ -48,29 +44,6 @@ export const ItemDetailContainer = () => {
     window.scrollTo(0, 0)
   });
 
-  // agrega la cantidad seleccionada del item al carrito, y actualiza su cantidad
-  const onAdd = (value) => {
-
-    // agrega el item al carrito
-    const addItemWorked = addItem(
-      {
-        id: id,
-        title: item.title,
-        description: item.description,
-        photo: item.pictureUrl,
-        price: item.price,
-        stock: item.stock,
-      },
-      value)
-
-    if (addItemWorked) {
-      setQuantity(value)
-    }
-    else {
-      handleShow()
-    }
-  }
-
   return (
     <Container className='text-center'>
       {isLoading ? <Loader /> :
@@ -81,9 +54,8 @@ export const ItemDetailContainer = () => {
           photo={item.pictureUrl}
           price={item.price}
           stock={item.stock}
-          onAdd={onAdd} 
-          quantity={quantity}
           handleClose={handleClose}
+          handleShow={handleShow}
           show={show}
           />
           :

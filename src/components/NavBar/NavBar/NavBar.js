@@ -1,15 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { CartWidget } from '../CartWidget/CartWidget'
 import { LoginFormContainer } from '../../LoginForm/LoginFormContainer/LoginFormContainer'
+import { CartContext } from '../../../context/CartContext'
+import { UserContext } from '../../../context/UserContext'
 import logo from '../../../img/logo.png'
 import { Link, NavLink } from 'react-router-dom'
 import './NavBar.css'
 
-export const NavBar = ({ categories, qyInCart, userData, clearData }) => {
+export const NavBar = ({ categories }) => {
 
   // mostrar el modal de registro/login
   const [show, setShow] = useState(false)
+
+  const { qyInCart } = useContext(CartContext)
+  const { userData, clearData } = useContext(UserContext)
 
   return (<Navbar expand="md" id="navbar-bg" className='navbar-dark'>
     <Navbar.Brand id="brand">

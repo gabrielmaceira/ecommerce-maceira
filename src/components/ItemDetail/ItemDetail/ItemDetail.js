@@ -1,12 +1,38 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
+import { CartContext } from '../../../context/CartContext'
 import { Link } from 'react-router-dom'
 import { SinStock } from '../../SinStock/SinStock'
 import './ItemDetail.css'
 
-export const ItemDetail = ({ id, title, description, photo, price, stock, 
-  onAdd, quantity, handleClose, show}) => {
+export const ItemDetail = ({ id, title, description, photo, price, stock, handleClose, handleShow, show }) => {
+
+  const [quantity, setQuantity] = useState(0)
+  const { addItem } = useContext(CartContext)
+
+  // agrega la cantidad seleccionada del item al carrito, y actualiza su cantidad
+  const onAdd = (value) => {
+
+    // agrega el item al carrito
+    const addItemWorked = addItem(
+      {
+        id: id,
+        title: title,
+        description: description,
+        photo: photo,
+        price: price,
+        stock: stock,
+      },
+      value)
+
+    if (addItemWorked) {
+      setQuantity(value)
+    }
+    else {
+      handleShow()
+    }
+  }
 
   return (<Row className='mt-3 itemDetail text-center justify-content-around' key={id} id={id}>
     <Col md={5} lg={4}>
@@ -39,11 +65,11 @@ export const ItemDetail = ({ id, title, description, photo, price, stock,
             </Button>
         </Col>}
         <Row className='justify-content-between mt-auto w-100 ml-auto mr-auto'>
-        <Col xs={5} className='text-muted text-left mt-auto'>
-          Stock: {stock} unidades 
+          <Col xs={5} className='text-muted text-left mt-auto'>
+            Stock: {stock} unidades
         </Col>
-        <SinStock stock={stock} size='5'/>
-      </Row>
+          <SinStock stock={stock} size='5' />
+        </Row>
       </Row>
     </Col>
     <Modal show={show} onHide={handleClose}>

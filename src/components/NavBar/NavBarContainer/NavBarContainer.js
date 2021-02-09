@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect } from 'react'
 import { NavBar } from '../NavBar/NavBar'
-import { CartContext } from '../../../context/CartContext'
-import { UserContext } from '../../../context/UserContext'
 import { getFirestore } from '../../../firebase'
 
 export const NavBarContainer = () => {
 
   const [categories, setCategories] = useState([])
-  const { qyInCart } = useContext(CartContext)
-  const { userData, clearData } = useContext(UserContext)
 
   // uso de contenedor para traer los datos de categorias de firestore
   useEffect(() => {
@@ -29,6 +25,6 @@ export const NavBarContainer = () => {
     })
   }, [])
 
-  return (<NavBar categories={categories} qyInCart={qyInCart} userData={userData} clearData={clearData} />)
+  return (<NavBar categories={categories} />)
 
 }
