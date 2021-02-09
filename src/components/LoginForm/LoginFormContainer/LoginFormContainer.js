@@ -53,14 +53,12 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
     const lastName = e.target[1].value
     const address = e.target[2].value
     const phone = e.target[3].value
-    const email = e.target[4].value
+    const email = e.target[4].value.toLowerCase()
     const password = e.target[5].value
     const repeatPassword = e.target[6].value
 
     const regNumbers = new RegExp('^\\d+$')
     const passTest = new RegExp('(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,15}')
-
-    console.log(passTest.test(password))
 
     if (firstName.trim() === '') {
       errorList.push("firstName")
