@@ -13,6 +13,7 @@ export const NavBar = ({ categories }) => {
   // mostrar el modal de registro/login
   const [show, setShow] = useState(false)
 
+  // llamada a context de usuario y carrito
   const { qyInCart } = useContext(CartContext)
   const { userData, clearData } = useContext(UserContext)
 
@@ -60,7 +61,7 @@ export const NavBar = ({ categories }) => {
       </Nav>
     </Navbar.Collapse>
 
-    <LoginFormContainer show={show} handleClose={() => setShow(false)} loginState={true} />
+    <LoginFormContainer show={show} handleClose={() => setShow(false)} handleOpen={() => setShow(true)} loginState={true} />
 
   </Navbar>)
 

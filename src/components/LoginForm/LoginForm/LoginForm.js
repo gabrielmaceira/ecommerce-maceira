@@ -10,6 +10,7 @@ export const LoginForm = ({ doSignUp, doLogin, show, handleClose, login, setLogi
     setLogin(true)
   }
 
+  // revisa si el input de la form esta en la lista de errores para mostrar el mensaje de error
   const hasError = (value) => {
     let i = 0
     let position = -1
@@ -25,6 +26,7 @@ export const LoginForm = ({ doSignUp, doLogin, show, handleClose, login, setLogi
   }
 
   return (<Modal show={show} onHide={closeModal}>
+    {/* si el state es login muestra la form de login, si muestra la de registro */}
     {login ? <React.Fragment>
       <Modal.Header closeButton>
         <Modal.Title>Logueate</Modal.Title>

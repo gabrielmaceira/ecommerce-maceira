@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Container } from 'react-bootstrap'
 import { OrderList } from '../OrderList/OrderList'
 import { Loader } from '../../Loader/Loader'
+import { ModalError } from '../../ModalError/ModalError'
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../../../context/UserContext'
 import { getFirestore } from '../../../firebase'
@@ -15,12 +16,18 @@ export const OrderListContainer = () => {
   // para mostrar el spinner si esta cargando
   const [isLoading, setIsLoading] = useState(false)
 
+  // manejo de estado
+  const [show, setShow] = useState(false)
+  const [alert, setAlert] = useState("")
+
   // traer los datos del usuario logueado
   const { userData } = useContext(UserContext)
 
+  // para redirigir al usuario si no esta logueado
   const history = useHistory()
 
-  // llenado de lista de items "items" al montarse el componente
+  // llenado de lista de ordenes al cargar el componente, ordenadas por fecha
+  // para ordenar por fecha se tuvo que hacer un indice en firestore (gracias a un mensaje de error en la consola)
   useEffect(() => {
 
     if (userData) {
@@ -47,13 +54,14 @@ export const OrderListContainer = () => {
       })
     }
     else {
-      alert("Debés estar logueado para ver tus órdenes")
-      history.push('/')
+      setAlert({message:"Debés estar logueado para ver tus órdenes", title: "Error de credenciales"})
+      setShow(true)
     }
   }, [userData, history])
 
   return (
     <Container fluid className='text-center'>
+      <ModalError alert={alert} show={show} handleClose={()=> {setShow(false); history.push('/')}} />
       {isLoading ? <Loader /> :
         orders && orders.length > 0 && userData ? <OrderList orders={orders} userData={userData} /> :
           <h3 className='mt-5 deliFont'>Todavía no tenés órdenes en el sistema</h3>

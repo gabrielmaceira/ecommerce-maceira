@@ -7,17 +7,21 @@ import CryptoJS from 'crypto-js'
 
 export const LoginFormContainer = ({ show, handleClose, loginState }) => {
 
+  // manejo del estado
   const [login, setLogin] = useState(loginState)
   const [errors, setErrors] = useState([])
 
+  // llamada al context de usuario
   const { setUserData } = useContext(UserContext)
 
+  // hacer el login
   const doLogin = (e) => {
     e.preventDefault()
+    // pasa el email a minusculas para compararlo luego con los datos en firestore, que se cargan siempre en minuscula
     const email = e.target[0].value.toLowerCase()
     const password = e.target[1].value
 
-    // Encrypt
+    // Hasheado de la contraseña por seguridad
     var encPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex)
 
     // carga de firestore
@@ -44,6 +48,7 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
     })
   }
 
+  // hacer el registro del usuario
   const doSignUp = (e) => {
     e.preventDefault()
 
@@ -53,13 +58,17 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
     const lastName = e.target[1].value
     const address = e.target[2].value
     const phone = e.target[3].value
+    // el email se pasa a minusculas para hacer los chequeos de login despues
     const email = e.target[4].value.toLowerCase()
     const password = e.target[5].value
     const repeatPassword = e.target[6].value
 
+    // revisa si son numeros
     const regNumbers = new RegExp('^\\d+$')
+    // revisa que tenga 1 mayuscula, 1 minuscula, 1 numero y entre 8 y 15 caracteres totales
     const passTest = new RegExp('(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,15}')
 
+    // validacion de campos
     if (firstName.trim() === '') {
       errorList.push("firstName")
     }
@@ -84,13 +93,14 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
       errorList.push("repeatPassword")
     }
 
+    // si no hay errores hace el signup, sino muestra error
     if (errorList.length === 0) {
-
       // carga de firestore
       const db = getFirestore()
       const userCollection = db.collection("users")
       const user = userCollection.where('email', '==', email)
 
+      // valida que no exista un usuario con el mail ingresado en firestore
       user.get().then((querySnapshot) => {
         if (querySnapshot.size !== 0) {
           return alert("Ya existe un usuario registrado con este mail.")

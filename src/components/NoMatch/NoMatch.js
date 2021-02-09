@@ -2,6 +2,7 @@ import React from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
 export const NoMatch = () => {
+  // para mostrar algun mensaje si la url ingresada por el usuario no es valida
   return (
     <Container fluid className='text-center'>
       <Row>

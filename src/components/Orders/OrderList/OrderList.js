@@ -4,8 +4,9 @@ import { Container, Accordion } from 'react-bootstrap'
 
 export const OrderList = ({ orders, userData }) => {
 
+  // para maneja el acordeon de ordenes
   const [activeKey, setActiveKey] = useState(orders[0].orderId)
-
+  
   const handleEvent = (value) => {
     setActiveKey(value)
   }

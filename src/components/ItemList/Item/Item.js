@@ -23,6 +23,7 @@ export const Item = ({ id, title, price, pictureUrl, stock }) => {
       <Col xs={12} className='thumbPrice pt-2'>
         $ {price}
       </Col>
+      {/* muestra el componente SinStock si el stock es 0, para informar al usuario antes de abrir el detalle */}
       <SinStock stock={stock} size='8'/>
     </Row>
   </Col>

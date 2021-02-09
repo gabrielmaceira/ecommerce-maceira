@@ -7,6 +7,7 @@ import './Cart.css'
 
 export const Cart = ({itemsInCart, cartTotal, removeItem, userData, sendOrder}) => {
 
+  // para mostrar la form de login/registro
   const [show, setShow] = useState(false)
 
   return <Container className='d-flex flex-column align-items-center mt-3'>

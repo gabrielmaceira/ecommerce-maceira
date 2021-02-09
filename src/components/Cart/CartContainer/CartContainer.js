@@ -3,26 +3,41 @@ import { CartContext } from '../../../context/CartContext'
 import { UserContext } from '../../../context/UserContext'
 import { Cart } from '../Cart/Cart'
 import { Loader } from '../../Loader/Loader'
+import { ModalError } from '../../ModalError/ModalError'
 import { useHistory } from 'react-router-dom'
 import { getFirestore } from '../../../firebase'
 import firebase from 'firebase/app'
 import '@firebase/firestore'
 
 export const CartContainer = () => {
-
+  // llamada a contextos de carrito y usuario
   const { itemsInCart, cartTotal, removeItem, clear } = useContext(CartContext)
   const { userData } = useContext(UserContext)
 
   // para mostrar el spinner si esta cargando
   const [isLoading, setIsLoading] = useState(false)
 
+  // mostrar mensajes de error o exito
+  const [show, setShow] = useState(false)
+  const [alert, setAlert] = useState("")
+  const [purchaseComplete, setPurchaseComplete] = useState(false)
+
   // para redirigir a la pantalla de ordenes
   const history = useHistory()
 
+  // mover la pagina hacia arriba de todo en la carga
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   })
 
+  // para redirigir a la pantalla de ordenes si la compra se realizo exitosamente
+  const handleClose = () => {
+    if (purchaseComplete) {
+      return history.push('/orders')
+    }
+  }
+
+  // insercion de la orden en la base de datos
   const sendOrder = () => {
     const db = getFirestore()
     const orderCollection = db.collection("orders")
@@ -55,6 +70,7 @@ export const CartContainer = () => {
           i++
         }
 
+        // si el item encontrado tiene stock suficiente lo agregar al batch update, sino a la lista de falta de stock
         if (doc.data().stock >= itemsInCart[found].qy) {
           batch.update(doc.ref, { stock: doc.data().stock - itemsInCart[found].qy })
         }
@@ -65,37 +81,42 @@ export const CartContainer = () => {
       }
       )
 
+      // si hay algun item sin stock informa al usuario, sino actualiza el stock en la firestore y agrega la orden
       if (outOfStock.length > 0) {
-        alert("Algunos items ya no tienen stock. Revisá las cantidades.")
+        setAlert({message:"Algunos items ya no tienen stock. Revisá las cantidades.", title: "¡Hubo un problema!"})
+        setShow(true)
       }
       else {
         batch.commit()
+
+        orderCollection.add(newOrder).then(({ id }) => {
+          setPurchaseComplete(true)
+          setAlert({message:"¡Gracias por tu compra!", title: "Compra exitosa"})
+          clear()
+          setShow(true)
+          
+        }).catch(err => {
+          console.log(err)
+        }).finally(() => {
+          setIsLoading(false)
+        })
+
       }
     }).catch(err => console.log(err))
       .finally(() => {
         setIsLoading(false)
       })
-
-
-    orderCollection.add(newOrder).then(({ id }) => {
-      alert("¡Gracias por tu compra!")
-      clear()
-      return history.push('/orders')
-    }).catch(err => {
-      console.log(err)
-    }).finally(() => {
-      setIsLoading(false)
-    })
   }
 
-  return (<React.Fragment> 
-    {isLoading ? <Loader /> : <Cart
-    itemsInCart={itemsInCart}
-    cartTotal={cartTotal}
-    removeItem={removeItem}
-    clear={clear}
-    userData={userData}
-    sendOrder={sendOrder}
-  />}
+  return (<React.Fragment>
+    {isLoading ? <Loader className='text-center' /> : <Cart
+      itemsInCart={itemsInCart}
+      cartTotal={cartTotal}
+      removeItem={removeItem}
+      clear={clear}
+      userData={userData}
+      sendOrder={sendOrder}
+    />}
+    <ModalError alert={alert} show={show} handleClose={handleClose} />
   </React.Fragment>)
 }
