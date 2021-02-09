@@ -3,7 +3,7 @@ import { NavBarContainer } from './components/NavBar/NavBarContainer/NavBarConta
 import { ItemListContainer } from './components/ItemList/ItemListContainer/ItemListContainer'
 import { ItemDetailContainer } from './components/ItemDetail/ItemDetailContainer/ItemDetailContainer'
 import { Footer } from './components/Footer/Footer'
-import { Cart } from './components/Cart/Cart/Cart'
+import { CartContainer } from './components/Cart/CartContainer/CartContainer'
 import { About } from './components/About/About'
 import { OrderListContainer } from './components/Orders/OrderListContainer/OrderListContainer'
 import { NoMatch } from './components/NoMatch/NoMatch'
@@ -38,7 +38,7 @@ function App() {
               <About greeting={about} />
             </Route>
             <Route path='/cart'>
-              <Cart />
+              <CartContainer />
             </Route>
             <Route>
               <NoMatch />

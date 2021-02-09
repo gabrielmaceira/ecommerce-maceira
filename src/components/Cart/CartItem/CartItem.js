@@ -2,7 +2,7 @@ import React from 'react'
 import { Row, Col } from 'react-bootstrap'
 import { XCircle } from 'react-bootstrap-icons'
 import { Link } from 'react-router-dom'
-import './Cart.css'
+import '../Cart/Cart.css'
 
 export const CartItem = ({ id, photo, title, price, quantity, removeItem }) => {
 

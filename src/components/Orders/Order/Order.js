@@ -1,12 +1,8 @@
-import React, { useContext } from 'react'
+import React from 'react'
 import { Card, Button, Accordion, Col, Container, Row } from 'react-bootstrap'
-import { UserContext } from '../../../context/UserContext'
 import dateformat from 'dateformat'
 
-export const Order = ({ id, items, total, date, handleEvent }) => {
-
-  // traer los datos del usuario logueado
-  const { userData } = useContext(UserContext)
+export const Order = ({ id, items, total, date, handleEvent, userData }) => {
 
   //para usar el index del map para el Accordion
   let formattedDate = new Date(date.seconds * 1000)
@@ -53,17 +49,6 @@ export const Order = ({ id, items, total, date, handleEvent }) => {
               }
             </Col>
             <Col xs={12} className='bgTotal cartTotal'>Total: $ {total}</Col>
-            {/*       {orders !== undefined &&
-        orders.map(order => {
-          return <Order
-            key={order.orderId}
-            id={order.orderId}
-            items={order.items}
-            total={order.total}
-            date={order.date}
-          />
-        })
-      } */}
           </Row>
         </Container>
       </Card.Body>

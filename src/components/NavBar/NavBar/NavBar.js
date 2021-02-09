@@ -1,16 +1,12 @@
-import React, { useContext, useState } from 'react'
-import { Navbar, Nav, NavDropdown, Badge } from 'react-bootstrap'
-import { CartWidget } from '../../Cart/CartWidget/CartWidget'
-import { CartContext } from '../../../context/CartContext'
-import { UserContext } from '../../../context/UserContext'
-import { LoginForm } from '../../LoginForm/LoginForm'
+import React, { useState } from 'react'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { CartWidget } from '../CartWidget/CartWidget'
+import { LoginFormContainer } from '../../LoginForm/LoginFormContainer/LoginFormContainer'
 import logo from '../../../img/logo.png'
 import { Link, NavLink } from 'react-router-dom'
 import './NavBar.css'
 
-export const NavBar = ({ categories }) => {
-  const { qyInCart } = useContext(CartContext)
-  const { userData, clearData } = useContext(UserContext)
+export const NavBar = ({ categories, qyInCart, userData, clearData }) => {
 
   // mostrar el modal de registro/login
   const [show, setShow] = useState(false)
@@ -27,8 +23,7 @@ export const NavBar = ({ categories }) => {
         {qyInCart > 0 &&
           <React.Fragment>
             <Nav.Link as={Link} to={`/cart`} className="text-white">
-              <CartWidget />
-              <Badge pill variant="primary">{qyInCart}</Badge>
+              <CartWidget qyInCart={qyInCart}/>
             </Nav.Link>
             <span className="vertical-divider ml-2 mr-2"></span>
           </React.Fragment>
@@ -60,7 +55,7 @@ export const NavBar = ({ categories }) => {
       </Nav>
     </Navbar.Collapse>
 
-    <LoginForm show={show} handleClose={() => setShow(false)} loginState={true} />
+    <LoginFormContainer show={show} handleClose={() => setShow(false)} loginState={true} />
 
   </Navbar>)
 

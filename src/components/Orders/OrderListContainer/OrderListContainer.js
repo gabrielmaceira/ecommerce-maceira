@@ -55,7 +55,7 @@ export const OrderListContainer = () => {
   return (
     <Container fluid className='text-center'>
       {isLoading ? <Loader /> :
-        orders && orders.length > 0 && userData ? <OrderList orders={orders} /> :
+        orders && orders.length > 0 && userData ? <OrderList orders={orders} userData={userData} /> :
           <h3 className='mt-5 deliFont'>Todavía no tenés órdenes en el sistema</h3>
       }
     </Container>

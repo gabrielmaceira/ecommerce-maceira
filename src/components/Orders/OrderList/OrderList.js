@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Order } from '../Order/Order'
 import { Container, Accordion } from 'react-bootstrap'
 
-export const OrderList = ({ orders }) => {
+export const OrderList = ({ orders, userData }) => {
 
   const [activeKey, setActiveKey] = useState(orders[0].orderId)
 
@@ -21,6 +21,7 @@ export const OrderList = ({ orders }) => {
             total={order.total}
             date={order.date}
             handleEvent={handleEvent}
+            userData={userData}
           />
         })
       }

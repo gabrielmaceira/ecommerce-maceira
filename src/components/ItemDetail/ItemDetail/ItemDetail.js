@@ -1,45 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React from 'react'
 import { Row, Col, Button, Modal } from 'react-bootstrap'
 import { ItemCount } from '../ItemCount/ItemCount'
 import { Link } from 'react-router-dom'
-import { CartContext } from '../../../context/CartContext'
 import { SinStock } from '../../SinStock/SinStock'
 import './ItemDetail.css'
 
-export const ItemDetail = ({ id, title, description, photo, price, stock }) => {
+export const ItemDetail = ({ id, title, description, photo, price, stock, 
+  onAdd, quantity, handleClose, show}) => {
 
-  const [quantity, setQuantity] = useState(0)
-  const { addItem } = useContext(CartContext)
-
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-
-
-  // agrega la cantidad seleccionada del item al carrito, y actualiza su cantidad
-  const onAdd = (value) => {
-    // agrega el item al carrito
-    const addItemWorked = addItem(
-      {
-        id: id,
-        title: title,
-        description: description,
-        photo: photo,
-        price: price,
-        stock: stock,
-      },
-      value)
-
-    if (addItemWorked) {
-      setQuantity(value)
-    }
-    else {
-      handleShow()
-    }
-  }
-
-  return (<Row className='mt-3 itemDetail text-center justify-content-around'>
+  return (<Row className='mt-3 itemDetail text-center justify-content-around' key={id} id={id}>
     <Col md={5} lg={4}>
       <img src={photo} className='itemDetailPhoto' alt={title}></img>
     </Col>
@@ -58,7 +27,7 @@ export const ItemDetail = ({ id, title, description, photo, price, stock }) => {
         </Col>
       </Row>
       <Row className='justify-content-center mt-auto w-100 ml-auto mr-auto'>
-        {/*oculta el ItemCount si no se agrego el item al carrito*/}
+        {/*muestra el ItemCount si no se agrego el item al carrito*/}
         {quantity === 0 && <Col xs={12}>
           <ItemCount stock={stock} initial='1' onAdd={onAdd} />
         </Col>}
