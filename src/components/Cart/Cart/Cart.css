@@ -52,6 +52,11 @@
   font-size: 1.1em;
 }
 
+.noFormatButton {
+  background: none;
+  border: none;
+}
+
 @media(max-width: 767px) {
   .cartTotal {
     font-size: 1.1em;

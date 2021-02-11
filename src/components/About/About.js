@@ -13,10 +13,11 @@ export const About = ({ greeting }) => {
         </Row>
       </Row>
       <Row>
-        <Col xs={12} className='aboutFont text-left mt-3'><span className='logoFont'>DeliCupcakes</span> es una idea "original" de 
+        <Col xs={12} className='aboutFont text-left mt-3'>
+          <span className='logoFont'>DeliCupcakes</span> es una idea "original" de 
         Gabriel Maceira Alvarez, como parte de un curso de React en CoderHouse.</Col>
-        <Col xs={12} className='aboutFont mt-3 text-left'>Los precios pueden parecer muy baratos o muy caros porque fueron puestos 
-        relativamente al azar.</Col>
+        <Col xs={12} className='aboutFont mt-3 text-left'>Los precios pueden parecer muy baratos o muy caros 
+        porque fueron puestos relativamente al azar.</Col>
       </Row>
     </Container>
   )

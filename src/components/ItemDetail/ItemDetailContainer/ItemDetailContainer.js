@@ -21,10 +21,6 @@ export const ItemDetailContainer = () => {
   // trayendo el id del item de los parametros de la url
   const { id } = useParams()
 
-  // para mostrar/ocultar el mensaje de error
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
-
   // agrega la cantidad seleccionada del item al carrito, y actualiza su cantidad
   const onAdd = (value) => {
 
@@ -44,7 +40,7 @@ export const ItemDetailContainer = () => {
       setQuantity(value)
     }
     else {
-      handleShow()
+      setShow(true)
     }
   }
 
@@ -70,6 +66,7 @@ export const ItemDetailContainer = () => {
     })
   }, [id])
 
+  // hace un scroll de la pantalla hasta el inicio al cargar el componente
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   });
@@ -85,7 +82,7 @@ export const ItemDetailContainer = () => {
           photo={item.pictureUrl}
           price={item.price}
           stock={item.stock}
-          handleClose={handleClose}
+          handleClose={() => setShow(false)}
           show={show}
           onAdd={onAdd}
           quantity={quantity}

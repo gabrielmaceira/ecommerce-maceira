@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react'
-import {LoginForm} from '../LoginForm/LoginForm'
+import { LoginForm } from '../LoginForm/LoginForm'
 import { UserContext } from '../../../context/UserContext'
 import { getFirestore } from '../../../firebase'
 import CryptoJS from 'crypto-js'
@@ -18,16 +18,15 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
   const doLogin = (e) => {
     e.preventDefault()
     // pasa el email a minusculas para compararlo luego con los datos en firestore, que se cargan siempre en minuscula
-    const email = e.target[0].value.toLowerCase()
-    const password = e.target[1].value
+    const loginData = { email: e.target[0].value.toLowerCase(), password: e.target[1].value }
 
     // Hasheado de la contraseña por seguridad
-    var encPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex)
+    var encPassword = CryptoJS.SHA256(loginData.password).toString(CryptoJS.enc.Hex)
 
     // carga de firestore
     const db = getFirestore()
     const userCollection = db.collection("users")
-    const user = userCollection.where('email', '==', email).where('password', '==', encPassword)
+    const user = userCollection.where('email', '==', loginData.email).where('password', '==', encPassword)
 
     user.get().then((querySnapshot) => {
       if (querySnapshot.size === 0) {
@@ -54,42 +53,44 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
 
     let errorList = []
 
-    const firstName = e.target[0].value
-    const lastName = e.target[1].value
-    const address = e.target[2].value
-    const phone = e.target[3].value
-    // el email se pasa a minusculas para hacer los chequeos de login despues
-    const email = e.target[4].value.toLowerCase()
-    const password = e.target[5].value
-    const repeatPassword = e.target[6].value
+    const signupData = {
+      firstName: e.target[0].value,
+      lastName: e.target[1].value,
+      address: e.target[2].value,
+      phone: e.target[3].value,
+      // el email se pasa a minusculas para hacer los chequeos de login despues
+      email: e.target[4].value.toLowerCase(),
+      password: e.target[5].value,
+      repeatPassword: e.target[6].value,
+    }
 
     // revisa si son numeros
     const regNumbers = new RegExp('^\\d+$')
     // revisa que tenga 1 mayuscula, 1 minuscula, 1 numero y entre 8 y 15 caracteres totales
     const passTest = new RegExp('(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).{8,15}')
 
-    // validacion de campos
-    if (firstName.trim() === '') {
+    // validacion de campos - refactorizar no lo hacia mas sencillo
+    if (signupData.firstName.trim() === '') {
       errorList.push("firstName")
     }
 
-    if (lastName.replace(/\s+/g, "") === '') {
+    if (signupData.lastName.trim() === '') {
       errorList.push("lastName")
     }
 
-    if (address.replace(/\s+/g, "") === '') {
+    if (signupData.address.trim() === '') {
       errorList.push("address")
     }
 
-    if (phone.replace(/\s+/g, "") === '' || !regNumbers.test(phone)) {
+    if (signupData.phone.trim() === '' || !regNumbers.test(signupData.phone)) {
       errorList.push("phone")
     }
 
-    if (password.replace(/\s+/g, "") === '' || !passTest.test(password)) {
+    if (signupData.password.trim() === '' || !passTest.test(signupData.password)) {
       errorList.push("password")
     }
 
-    if (password !== repeatPassword) {
+    if (signupData.password !== signupData.repeatPassword) {
       errorList.push("repeatPassword")
     }
 
@@ -98,7 +99,7 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
       // carga de firestore
       const db = getFirestore()
       const userCollection = db.collection("users")
-      const user = userCollection.where('email', '==', email)
+      const user = userCollection.where('email', '==', signupData.email)
 
       // valida que no exista un usuario con el mail ingresado en firestore
       user.get().then((querySnapshot) => {
@@ -107,14 +108,14 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
         }
         else {
           // Encrypt
-          const encPassword = CryptoJS.SHA256(password).toString(CryptoJS.enc.Hex)
+          const encPassword = CryptoJS.SHA256(signupData.password).toString(CryptoJS.enc.Hex)
 
           const newUser = {
-            firstName: firstName,
-            lastName: lastName,
-            address: address,
-            phone: phone,
-            email: email.toLowerCase(),
+            firstName: signupData.firstName,
+            lastName: signupData.lastName,
+            address: signupData.address,
+            phone: signupData.phone,
+            email: signupData.email.toLowerCase(),
             password: encPassword,
           }
 
@@ -140,9 +141,9 @@ export const LoginFormContainer = ({ show, handleClose, loginState }) => {
     doSignUp={doSignUp}
     doLogin={doLogin}
     show={show}
-    handleClose={handleClose} 
+    handleClose={handleClose}
     login={login}
     setLogin={setLogin}
     errors={errors}
-    />)
+  />)
 }

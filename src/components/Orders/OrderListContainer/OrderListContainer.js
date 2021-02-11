@@ -17,8 +17,7 @@ export const OrderListContainer = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   // manejo de estado
-  const [show, setShow] = useState(false)
-  const [alert, setAlert] = useState("")
+  const [alertData, setAlertData] = useState({ show: false, alert: {}})
 
   // traer los datos del usuario logueado
   const { userData } = useContext(UserContext)
@@ -54,14 +53,17 @@ export const OrderListContainer = () => {
       })
     }
     else {
-      setAlert({message:"Debés estar logueado para ver tus órdenes", title: "Error de credenciales"})
-      setShow(true)
+      setAlertData({
+        show: true,
+        alert: { message: "Debés estar logueado para ver tus órdenes", title: "Error de credenciales" }
+      })
     }
   }, [userData, history])
 
   return (
     <Container fluid className='text-center'>
-      <ModalError alert={alert} show={show} handleClose={()=> {setShow(false); history.push('/')}} />
+      <ModalError alert={alertData.alert} show={alertData.show}
+        handleClose={() => { setAlertData({show: false, alert:{}}); history.push('/') }} />
       {isLoading ? <Loader /> :
         orders && orders.length > 0 && userData ? <OrderList orders={orders} userData={userData} /> :
           <h3 className='mt-5 deliFont'>Todavía no tenés órdenes en el sistema</h3>

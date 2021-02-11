@@ -18,9 +18,14 @@ export const CartContainer = () => {
   const [isLoading, setIsLoading] = useState(false)
 
   // mostrar mensajes de error o exito
-  const [show, setShow] = useState(false)
-  const [alert, setAlert] = useState("")
-  const [purchaseComplete, setPurchaseComplete] = useState(false)
+  const [alertData, setAlertData] = useState(
+    {
+      show: false,
+      alert: {
+        message: "", title: "",
+      },
+      purchaseComplete: false
+    })
 
   // para redirigir a la pantalla de ordenes
   const history = useHistory()
@@ -32,9 +37,12 @@ export const CartContainer = () => {
 
   // para redirigir a la pantalla de ordenes si la compra se realizo exitosamente
   const handleClose = () => {
-    if (purchaseComplete) {
+    if (alertData.purchaseComplete) {
       return history.push('/orders')
     }
+    setAlertData({
+      ...alertData, show: false
+    })
   }
 
   // insercion de la orden en la base de datos
@@ -83,18 +91,22 @@ export const CartContainer = () => {
 
       // si hay algun item sin stock informa al usuario, sino actualiza el stock en la firestore y agrega la orden
       if (outOfStock.length > 0) {
-        setAlert({message:"Algunos items ya no tienen stock. Revisá las cantidades.", title: "¡Hubo un problema!"})
-        setShow(true)
+        setAlertData({
+          ...setAlertData, show: true,
+          alert: { message: "Algunos items ya no tienen stock. Revisá las cantidades.", title: "¡Hubo un problema!" }
+        })
       }
       else {
         batch.commit()
 
         orderCollection.add(newOrder).then(({ id }) => {
-          setPurchaseComplete(true)
-          setAlert({message:"¡Gracias por tu compra!", title: "Compra exitosa"})
+          setAlertData({
+            show: true,
+            purchaseComplete: true,
+            alert: { message: `¡Gracias por tu compra! ID ${id}`, title: "Compra exitosa" }
+          })
           clear()
-          setShow(true)
-          
+
         }).catch(err => {
           console.log(err)
         }).finally(() => {
@@ -117,6 +129,6 @@ export const CartContainer = () => {
       userData={userData}
       sendOrder={sendOrder}
     />}
-    <ModalError alert={alert} show={show} handleClose={handleClose} />
+    <ModalError alert={alertData.alert} show={alertData.show} handleClose={handleClose} />
   </React.Fragment>)
 }
