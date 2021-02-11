@@ -47,6 +47,10 @@ Uso de dateformat para dar formato a las fechas - https://www.npmjs.com/package/
 
 
 
+## Aplicación en funcionamiento
+
+![](.\delicupcakes-en-funcionamiento.gif)
+
 ### Autor
 
 Gabriel Maceira Alvarez
