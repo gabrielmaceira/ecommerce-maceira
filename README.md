@@ -49,7 +49,7 @@ Uso de dateformat para dar formato a las fechas - https://www.npmjs.com/package/
 
 ## Aplicación en funcionamiento
 
-![Delicupcakes en funcionamiento](https://github.com/gabrielmaceira/ecommerce-maceira/blob/master/delicupcakes-en-funcionamiento.gif)
+![Delicupcakes en funcionamiento](https://drive.google.com/file/d/1cp3u2G9zQ4ssVHP7wVbWwEKaTOpdiAN4)
 
 ### Autor
 
